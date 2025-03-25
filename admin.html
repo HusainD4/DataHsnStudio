@@ -51,12 +51,19 @@
       border-radius: 8px;
     }
 
-    form input, form button {
+    form input{
       width: 100%;
       padding: 10px;
-      margin: 10px 0;
+      margin: 10px -10px;
       border-radius: 5px;
       font-size: 16px;
+    }
+    form button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0px;
+        border-radius: 5px;
+        font-size: 16px;
     }
 
     form input {
@@ -319,7 +326,7 @@
     <h1>Masukkan Judul dan Link</h1>
     <form id="dataForm">
       <label for="title">Judul: </label>
-      <input type="text" id="title" required><br><br>
+      <input type="text" id="title" required ><br><br>
       <label for="link">Link Google Drive: </label>
       <input type="url" id="link" required><br><br>
       <button type="submit">Kirim Data</button>
