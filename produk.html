@@ -1,16 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance Mode</title>
-    <link rel="stylesheet" href="css/maintens.css">
-</head>
-<body>
-    <div class="maintenance-container">
-        <h1>We Are Currently Under Maintenance</h1>
-        <p>Our website is temporarily down for maintenance. Please check back later.</p>
-        <a href="index.html" class="back-link">Back to Homepage</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - HSN Studio</title>
+    <link rel="stylesheet" href="css/footer.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+    <style>
+      .product-card {
+        margin-bottom: 30px;
+      }
+      .btn-custom {
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+      }
+      .btn-custom:hover {
+        background-color: #0056b3;
+      }
+      .product-price {
+        font-weight: bold;
+        color: #28a745;
+      }
+    </style>
+ 
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="/images/LogoHsnStudio.png"
+            style="height: 30px"
+            alt="HSN Studio Logo"
+          />
+          HSN Studio</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="produk.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Product Section -->
+    <div class="container mt-5">
+      <h2 class="text-center mb-4">Our Products & Services</h2>
+
+      <div class="row">
+        <!-- Paket Studio 1 -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img
+              src="/images/product1.jpg"
+              class="card-img-top"
+              alt="Paket Studio 1"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Paket Studio 1</h5>
+              <p class="card-text">
+                Durasi 10 menit, Free 2 foto cetak ukuran A5, 1 templates, Free
+                10 soft-file, max 3 orang.
+              </p>
+              <p class="product-price">Rp. 35.000</p>
+              <a
+                href="form-order.html?service=Paket Studio 1&price=35000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Paket Studio 2 -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img
+              src="/images/product2.jpg"
+              class="card-img-top"
+              alt="Paket Studio 2"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Paket Studio 2</h5>
+              <p class="card-text">
+                Durasi 20 menit, Free 2 foto cetak ukuran A5 bebas pilih
+                templates, Free 15 soft-file, max 5 orang.
+              </p>
+              <p class="product-price">Rp. 50.000</p>
+              <a
+                href="form-order.html?service=Paket Studio 2&price=50000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Ulang Tahun -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img
+              src="/images/product3.jpg"
+              class="card-img-top"
+              alt="Ulang Tahun"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Ulang Tahun</h5>
+              <p class="card-text">
+                Full akses file foto selama 1 tahun, Free editing.
+              </p>
+              <p class="product-price">Rp. 250.000</p>
+              <a
+                href="form-order.html?service=Ulang Tahun&price=250000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto Produk -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img
+              src="/images/product4.jpg"
+              class="card-img-top"
+              alt="Foto Produk"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Foto Produk</h5>
+              <p class="card-text">10 foto produk.</p>
+              <p class="product-price">Rp. 150.000</p>
+              <a
+                href="form-order.html?service=Foto Produk&price=150000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto Wisuda -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img
+              src="/images/product5.jpg"
+              class="card-img-top"
+              alt="Foto Wisuda"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Foto Wisuda</h5>
+              <p class="card-text">1 jam, Free edit 5 foto.</p>
+              <p class="product-price">Rp. 250.000</p>
+              <a
+                href="form-order.html?service=Foto Wisuda&price=250000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Event -->
+        <div class="col-md-4 product-card" data-category="studio">
+          <div class="card shadow-lg">
+            <img src="/images/product6.jpg" class="card-img-top" alt="Event" />
+            <div class="card-body">
+              <h5 class="card-title">Event</h5>
+              <p class="card-text">Per hari, foto, video durasi 1-5 menit.</p>
+              <p class="product-price">Rp. 500.000</p>
+              <a
+                href="form-order.html?service=Event&price=500000"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Jasa Joki Tugas Kuliah -->
+        <div class="col-md-4 product-card" data-category="jasa">
+          <div class="card shadow-lg">
+            <img
+              src="/images/service1.jpg"
+              class="card-img-top"
+              alt="Jasa Joki Tugas Kuliah"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Joki Tugas Kuliah</h5>
+              <p class="card-text">
+                Jasa joki tugas kuliah sesuai dengan kebutuhan.
+              </p>
+              <p class="product-price">Hubungi Kami</p>
+              <a
+                href="form-order.html?service=Jasa Joki Tugas Kuliah"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Jasa Editing Foto -->
+        <div class="col-md-4 product-card" data-category="jasa">
+          <div class="card shadow-lg">
+            <img
+              src="/images/service2.jpg"
+              class="card-img-top"
+              alt="Jasa Editing Foto"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Editing Foto</h5>
+              <p class="card-text">Jasa editing foto profesional.</p>
+              <p class="product-price">Hubungi Kami</p>
+              <a
+                href="form-order.html?service=Jasa Editing Foto"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Jasa Editing Video -->
+        <div class="col-md-4 product-card" data-category="jasa">
+          <div class="card shadow-lg">
+            <img
+              src="/images/service3.jpg"
+              class="card-img-top"
+              alt="Jasa Editing Video"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Editing Video</h5>
+              <p class="card-text">Jasa editing video profesional.</p>
+              <p class="product-price">Hubungi Kami</p>
+              <a
+                href="form-order.html?service=Jasa Editing Video"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Jasa Pembuatan Website -->
+        <div class="col-md-4 product-card" data-category="jasa">
+          <div class="card shadow-lg">
+            <img
+              src="/images/service4.jpg"
+              class="card-img-top"
+              alt="Jasa Pembuatan Website"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Website</h5>
+              <p class="card-text">Jasa pembuatan website profesional.</p>
+              <p class="product-price">Hubungi Kami</p>
+              <a
+                href="form-order.html?service=Jasa Pembuatan Website"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Jasa Pembuatan Aplikasi -->
+        <div class="col-md-4 product-card" data-category="jasa">
+          <div class="card shadow-lg">
+            <img
+              src="/images/service5.jpg"
+              class="card-img-top"
+              alt="Jasa Pembuatan Aplikasi"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Jasa Pembuatan Aplikasi</h5>
+              <p class="card-text">
+                Jasa pembuatan aplikasi untuk berbagai kebutuhan.
+              </p>
+              <p class="product-price">Hubungi Kami</p>
+              <a
+                href="form-order.html?service=Jasa Pembuatan Aplikasi"
+                class="btn btn-custom"
+                >Beli Sekarang</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <!-- Logo dan Deskripsi -->
+        <div class="footer-logo">
+          <img src="images/LogoHsnStudio.png" alt="HSN Studio Logo">
+          <p>HSN Studio adalah penyedia layanan fotografi dan video untuk berbagai acara, siap membantu mewujudkan setiap momen istimewa Anda.</p>
+        </div>
+  
+        <!-- Menu Tautan -->
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="produk.html">Produk & Layanan</a></li>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+          </ul>
+        </div>
+  
+        <!-- Kontak Kami -->
+        <div class="footer-contact">
+          <h4>Kontak Kami</h4>
+          <ul>
+            <li><i class="fas fa-phone-alt"></i> <a href="tel:+628123456789">+62 812-3456-789</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:layananhsnstudio@gmail.com">layananhsnstudio@gmail.com</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:adm.hsn.std@gmail.com">adm.hsn.std@gmail.com</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:hsnstudiobackup@gmail.com">hsnstudiobackup@gmail.com</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 12, Jakarta, Indonesia</li>
+          </ul>
+        </div>
+  
+        <!-- Sosial Media -->
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <ul>
+            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>Facebook</li>
+            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a>Instagram</li>
+            <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>LinkedIn</li>
+            <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a>Youtube</li>
+            <li><a href="#" target="_blank"><i class="fab fa-github"></i></a>GitHub</li>
+            <li><a href="#" target="_blank"><i class="fab fa-google-play"></i></a>Google PlayStore</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 HSN Studio. Semua hak cipta dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Script untuk FontAwesome (untuk ikon sosial media) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

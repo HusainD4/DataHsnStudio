@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Order - HSN Studio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .form-container h3 {
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Form Order Section -->
+    <div class="container form-container">
+        <h3>Form Order - HSN Studio</h3>
+        <form action="submit-order.php" method="POST">
+            <!-- Hidden fields for service name and price -->
+            <input type="hidden" id="service" name="service">
+            <input type="hidden" id="price" name="price">
+
+            <!-- Dropdown for selecting service -->
+            <div class="mb-3">
+                <label for="serviceDropdown" class="form-label">Jenis Layanan</label>
+                <select class="form-select" id="serviceDropdown" name="serviceDropdown" required>
+                    <option value="Paket Studio 1">Paket Studio 1</option>
+                    <option value="Paket Studio 2">Paket Studio 2</option>
+                    <option value="Ulang Tahun">Ulang Tahun</option>
+                    <option value="Foto Produk">Foto Produk</option>
+                    <option value="Foto Wisuda">Foto Wisuda</option>
+                    <option value="Event">Event</option>
+                    <option value="Jasa Joki Tugas Kuliah">Jasa Joki Tugas Kuliah</option>
+                    <option value="Jasa Editing Foto">Jasa Editing Foto</option>
+                    <option value="Jasa Editing Video">Jasa Editing Video</option>
+                    <option value="Jasa Pembuatan Website">Jasa Pembuatan Website</option>
+                    <option value="Jasa Pembuatan Aplikasi">Jasa Pembuatan Aplikasi</option>
+                </select>
+            </div>
+
+            <!-- Input for Date -->
+            <div class="mb-3">
+                <label for="date" class="form-label">Tanggal Acara</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+
+            <!-- Input for Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">Alamat</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <!-- Input for Phone Number -->
+            <div class="mb-3">
+                <label for="phone" class="form-label">Nomor Telepon</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="mb-3">
+                <label for="payment" class="form-label">Metode Pembayaran</label>
+                <select class="form-select" id="payment" name="payment" required>
+                    <option value="COD">Cash on Delivery (COD)</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-custom">Kirim Order</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Automatically fill the service and price fields from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service');
+        const price = urlParams.get('price');
+
+        // Set the hidden input fields
+        document.getElementById('service').value = service;
+        document.getElementById('price').value = price;
+
+        // Set the dropdown to the selected service
+        document.getElementById('serviceDropdown').value = service;
+    </script>
+</body>
+</html>
