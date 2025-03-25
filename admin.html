@@ -157,6 +157,8 @@
 
         // Jalankan fungsi generateDriveEmbedLink untuk mendapatkan link embed
         const embedLink = generateDriveEmbedLink(link);
+        showToast("Data berhasil di simpan!");
+
 
         // Kirimkan data (judul dan link embed) ke Firebase
         push(ref(database, "links"), { title, link: embedLink }).then(() => {
