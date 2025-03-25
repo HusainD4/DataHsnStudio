@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSN Studio - View Links</title>
+
+  <!-- Import Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/images/LogoHsnStudio.png" style="height: 30px;" alt="HSN Studio Logo">
+        HSN Studio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="produk.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>
+        <img src="LogoHsnStudio.png" alt="HSN Studio Logo">
+        HSN Studio
+    </h1>
+    <p>Welcome to our link gallery! </p>
+  </header>
+
+  <!-- Gallery -->
+  <main>
+    <section id="gallery" class="gallery-container">
+      <!-- Cards will be dynamically added here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 HSN Studio. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms of Service</a> | 
+      <a href="#">Contact Us</a>
+    </p>
+  </footer>
+
+  <!-- Import Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <script type="module">
+    // Import Firebase dari SDK modular
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+    // Konfigurasi Firebase Anda
+    const firebaseConfig = {
+      apiKey: "AIzaSyCCRYX_sccuZyS6U219jupC3iXuU81SvIk",
+      authDomain: "hsnimageview.firebaseapp.com",
+      databaseURL: "https://hsnimageview-default-rtdb.firebaseio.com/",
+      projectId: "hsnimageview",
+      storageBucket: "hsnimageview.appspot.com",
+      messagingSenderId: "815454639020",
+      appId: "1:815454639020:web:b29867dccb7d9c10676009",
+      measurementId: "G-PK7Y8R7TWJ"
+    };
+
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Ambil referensi data dari Firebase
+    const linksRef = ref(database, 'links');
+
+    // Ambil data dan tampilkan di halaman
+    window.onload = function () {
+      get(linksRef).then((snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          // Loop melalui data dan tampilkan setiap judul dan link
+          const container = document.getElementById('gallery');
+          for (const id in data) {
+            const linkData = data[id];
+            const title = linkData.title;
+            const link = linkData.link;
+
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+            galleryItem.innerHTML = `
+              <h3>${title}</>
+              <button class="btn-view" data-bs-toggle="modal" data-bs-target="#linkModal" data-link="${link}" data-title="${title}">Lihat Foto</button>
+            `;
+            container.appendChild(galleryItem);
+          }
+        } else {
+          console.log("Data kosong.");
+        }
+      }).catch((error) => {
+        console.error("Error membaca data: ", error);
+      });
+    };
+
+    // Handle View button click
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('btn-view')) {
+        const link = event.target.getAttribute('data-link');
+        const title = event.target.getAttribute('data-title');
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('iframeModal').src = link;
+      }
+    });
+  </script>
+
+  <!-- Modal for Viewing Content -->
+  <div class="modal fade" id="linkModal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Link Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe class="fremeItems" id="iframeModal"  frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
