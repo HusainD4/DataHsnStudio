@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/none.js">
+    <script>
+        function removeHtmlFromUrl() {
+          if (window.location.href.endsWith('.html')) {
+            const newUrl = window.location.href.replace('.html', '');
+            history.replaceState(null, '', newUrl);
+          }
+        }
+        
+      removeHtmlFromUrl(); 
+        
+      </script>
     <title>Loading Page</title>
     <style>
         /* Menyusun halaman loading */

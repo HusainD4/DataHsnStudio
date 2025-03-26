@@ -12,6 +12,18 @@
   <link rel="stylesheet" href="/css/footer.css">
   <link rel="stylesheet" href="/css/contactstyle.css">
   <link rel="icon" href="/images/LogoHsnStudio.png" type="image/x-icon">
+  <link rel="stylesheet" href="/none.js">
+  <script>
+    function removeHtmlFromUrl() {
+      if (window.location.href.endsWith('.html')) {
+        const newUrl = window.location.href.replace('.html', '');
+        history.replaceState(null, '', newUrl);
+      }
+    }
+    
+  removeHtmlFromUrl(); 
+    
+  </script>
 
 </head>
 <body>

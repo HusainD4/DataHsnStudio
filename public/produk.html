@@ -11,6 +11,18 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
     <link rel="icon" href="/images/LogoHsnStudio.png" type="image/x-icon">
+    <link rel="stylesheet" href="/none.js">
+    <script>
+      function removeHtmlFromUrl() {
+        if (window.location.href.endsWith('.html')) {
+          const newUrl = window.location.href.replace('.html', '');
+          history.replaceState(null, '', newUrl);
+        }
+      }
+      
+    removeHtmlFromUrl(); 
+      
+    </script>
 
     <style>
       .product-card {

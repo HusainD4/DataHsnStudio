@@ -12,6 +12,17 @@
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="css/footer.css">
   <script src="none.js"></script>
+  <script>
+    function removeHtmlFromUrl() {
+      if (window.location.href.endsWith('.html')) {
+        const newUrl = window.location.href.replace('.html', '');
+        history.replaceState(null, '', newUrl);
+      }
+    }
+    
+  removeHtmlFromUrl(); 
+    
+  </script>
       <!-- Menambahkan favicon -->
       <link rel="icon" href="images/LogoHsnStudio.png" type="image/x-icon">
 </head>

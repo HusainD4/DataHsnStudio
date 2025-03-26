@@ -6,6 +6,18 @@
     <title>Admin Dashboard with Sidebar</title>
     <link rel="stylesheet" href="/admin/styles.css" />
     <link rel="icon" href="images/LogoHsnStudio.png" type="image/x-icon">
+    <link rel="stylesheet" href="/none.js">
+<script>
+  function removeHtmlFromUrl() {
+    if (window.location.href.endsWith('.html')) {
+      const newUrl = window.location.href.replace('.html', '');
+      history.replaceState(null, '', newUrl);
+    }
+  }
+  
+removeHtmlFromUrl(); 
+  
+</script>
 
     <!-- Link ke file CSS -->
     <style>
@@ -133,6 +145,10 @@
 
           <li>
             <a href="/admin/detailtrans.html" class="sidebar-link" data-target="trans">Transaksi</a>
+          </li>
+
+          <li>
+            <a href="/index.html" class="sidebar-link" data-target="trans">Web</a>
           </li>
         </ul>
       </nav>
