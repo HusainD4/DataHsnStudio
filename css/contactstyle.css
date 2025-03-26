@@ -1,0 +1,230 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #343a40;
+  }
+  
+  .navbar .navbar-brand img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .navbar .navbar-nav .nav-link {
+    color: white !important;
+  }
+  
+  .navbar .navbar-nav .nav-link:hover {
+    color: #ffb400 !important;
+  }
+  
+  /* Main Content */
+  main {
+    padding: 50px 0;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #444;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  ul li {
+    margin: 10px 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #ffb400;
+  }
+  
+  /* Contact Info Box Styling */
+  .contact-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    margin-bottom: 40px;
+  }
+  
+  .contact-info {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .contact-info:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .contact-info i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #ffb400;
+  }
+  
+  .contact-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info p {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .contact-info a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+  
+  .contact-info a:hover {
+    color: #ffb400;
+  }
+  
+  /* Footer Styling */
+  .footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 30px 0;
+  }
+  
+  .footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-logo img {
+    height: 50px;
+  }
+  
+  .footer-logo p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .footer-links h4,
+  .footer-contact h4,
+  .footer-social h4 {
+    margin-bottom: 20px;
+  }
+  
+  .footer-links ul,
+  .footer-contact ul,
+  .footer-social ul {
+    list-style: none;
+  }
+  
+  .footer-links li,
+  .footer-contact li,
+  .footer-social li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-social a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    color: #ffb400;
+  }
+  
+  .footer-bottom {
+    background-color: #23272b;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+  }
+  
+  /* Animation for the Contact Info Boxes */
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .contact-info {
+    animation: bounce 2s infinite;
+  }
+  /* Animasi untuk logo berputar */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Menambahkan efek animasi berputar pada logo */
+  .navbar .navbar-brand img {
+    height: 30px;
+    margin-right: 10px;
+    animation: spin 5s linear infinite; /* Durasi 5 detik dan rotasi berulang tanpa henti */
+  }
+  

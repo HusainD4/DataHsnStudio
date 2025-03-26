@@ -191,3 +191,21 @@ body {
     font-size: 1.5rem;
     margin-bottom: 10px;
   }
+
+
+    /* Animasi untuk logo berputar */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Menambahkan efek animasi berputar pada logo */
+.navbar .navbar-brand img {
+  height: 30px;
+  margin-right: 10px;
+  animation: spin 5s linear infinite; /* Durasi 5 detik dan rotasi berulang tanpa henti */
+}
