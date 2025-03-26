@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - HSN Studio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="/images/LogoHsnStudio.png" type="image/x-icon">
+    <link rel="stylesheet" href="/admin/styles.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <style>
+        /* Modal Styling */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed;
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+          overflow: auto; /* Enable scroll if needed */
+        }
+  
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 400px;
+          text-align: center;
+        }
+  
+        .modal button {
+          padding: 10px 20px;
+          margin: 10px;
+          cursor: pointer;
+        }
+  
+        .cancel {
+          background-color: #f44336;
+          color: white;
+        }
+  
+        .confirm {
+          background-color: #ff0000;
+          color: white;
+        }
+  
+        /* Notifikasi */
+        .toast {
+          visibility: hidden;
+          min-width: 250px;
+          margin-left: -125px;
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          border-radius: 2px;
+          padding: 16px;
+          position: fixed;
+          z-index: 1;
+          left: 50%;
+          bottom: 30px;
+          font-size: 17px;
+        }
+  
+        .toast.show {
+          visibility: visible;
+          animation: fadeInOut 3s;
+        }
+  
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+  
+        .settings-section {
+          margin-bottom: 30px;
+        }
+  
+        .settings-section h3 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+  
+        .settings-section p,
+        .settings-section ul {
+          font-size: 16px;
+          margin-left: 20px;
+        }
+  
+        .settings-section a {
+          color: #007bff;
+          text-decoration: none;
+        }
+  
+        .settings-section a:hover {
+          text-decoration: underline;
+        }
+  
+        .settings-section ul {
+          list-style-type: disc;
+          margin-left: 40px;
+        }
+      </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Transaksi</h2>
+              </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" id="dashboardLink">Dashboard</a></li>
+                <li><a href="#" id="orderanLink">Orderan</a></li>
+                <li><a href="#" id="historyLink">History Transaksi</a></li>
+                <li><a href="/admin.html">Admin Galery</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Dashboard Transaksi</h1>
+            </header>
+
+            <div class="content" id="orderanContent">
+                <h2>Daftar Orderan</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Pemesan</th>
+                            <th>Email</th>
+                            <th>Layanan</th>
+                            <th>Tanggal Acara</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Orders will be populated here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="content" id="historyContent" style="display:none;">
+                <h2>History Transaksi</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nama Pemesan</th>
+                            <th>Email</th>
+                            <th>Layanan</th>
+                            <th>Tanggal Acara</th>
+                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Metode Pembayaran</th>
+                            <th>Harga</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody">
+                        <!-- History will be populated here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCCRYX_sccuZyS6U219jupC3iXuU81SvIk",
+            authDomain: "hsnimageview.firebaseapp.com",
+            databaseURL: "https://hsnimageview-default-rtdb.firebaseio.com/",
+            projectId: "hsnimageview",
+            storageBucket: "hsnimageview.appspot.com",
+            messagingSenderId: "815454639020",
+            appId: "1:815454639020:web:b29867dccb7d9c10676009",
+            measurementId: "G-PK7Y8R7TWJ",
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Function to display orders in the table
+        function displayOrders() {
+            const ordersRef = database.ref("orders");
+
+            ordersRef.once("value").then(snapshot => {
+                const ordersData = snapshot.val();
+                const ordersTableBody = document.getElementById("ordersTableBody");
+
+                ordersTableBody.innerHTML = ''; // Clear current table
+
+                if (ordersData) {
+                    let index = 1;
+                    for (const orderId in ordersData) {
+                        const order = ordersData[orderId];
+                        const row = document.createElement("tr");
+
+                        row.innerHTML = `
+                            <td>${index}</td>
+                            <td>${order.customerName}</td>
+                            <td>${order.email}</td>
+                            <td>${order.service}</td>
+                            <td>${order.date}</td>
+                            <td>${order.status || 'Pending'}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm complete-btn" data-order-id="${orderId}">Selesai</button>
+                                <button class="btn btn-danger btn-sm delete-btn" data-order-id="${orderId}">Hapus</button>
+                            </td>
+                        `;
+                        ordersTableBody.appendChild(row);
+                        index++;
+                    }
+                } else {
+                    ordersTableBody.innerHTML = "<tr><td colspan='7' class='text-center'>Tidak ada data orderan</td></tr>";
+                }
+            });
+        }
+
+        // Function to display history in the table
+        function displayHistory() {
+            const historyRef = database.ref("orderHistory");
+
+            historyRef.once("value").then(snapshot => {
+                const historyData = snapshot.val();
+                const historyTableBody = document.getElementById("historyTableBody");
+
+                historyTableBody.innerHTML = ''; // Clear current table
+
+                if (historyData) {
+                    let index = 1;
+                    for (const orderId in historyData) {
+                        const order = historyData[orderId];
+                        const row = document.createElement("tr");
+
+                        row.innerHTML = `
+                            <td>${index}</td>
+                            <td>${order.customerName}</td>
+                            <td>${order.email}</td>
+                            <td>${order.service}</td>
+                            <td>${order.date}</td>
+                            <td>${order.address}</td>
+                            <td>${order.phone}</td>
+                            <td>${order.payment}</td>
+                            <td>${order.price}</td>
+                            <td>${order.status}</td>
+                        `;
+                        historyTableBody.appendChild(row);
+                        index++;
+                    }
+                }
+            });
+        }
+
+        // Event listeners for sidebar links
+        document.getElementById("dashboardLink").addEventListener("click", () => {
+            document.getElementById("orderanContent").style.display = "none";
+            document.getElementById("historyContent").style.display = "none";
+            displayOrders();
+            document.getElementById("orderanContent").style.display = "block";
+            document.getElementById("historyContent").style.display = "block";
+            setActiveLink("dashboardLink");
+        });
+
+        document.getElementById("orderanLink").addEventListener("click", () => {
+            document.getElementById("orderanContent").style.display = "block";
+            document.getElementById("historyContent").style.display = "none";
+            displayOrders();
+            setActiveLink("orderanLink");
+        });
+
+        document.getElementById("historyLink").addEventListener("click", () => {
+            document.getElementById("orderanContent").style.display = "none";
+            document.getElementById("historyContent").style.display = "block";
+            displayHistory();
+            setActiveLink("historyLink");
+        });
+
+        function setActiveLink(id) {
+            const links = document.querySelectorAll('.sidebar-menu a');
+            links.forEach(link => link.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // Initial load - show History by default
+        displayHistory();
+        setActiveLink("dashboardLink");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <style>
+        /* Menyusun halaman loading */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            overflow: hidden;
+        }
+
+        /* Gaya untuk overlay loading */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Animasi logo */
+        .logo {
+            width: 100px;  /* Atur ukuran logo sesuai keinginan */
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Animasi berputar untuk logo */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Menyembunyikan overlay setelah beberapa detik */
+        .content {
+            display: none; /* Konten utama akan disembunyikan saat loading */
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="logo">
+            <!-- Ganti dengan file logo kamu -->
+            <img src="images/LogoHsnStudio.png" alt="LogoHsnStudio" width="60px"/>
+        </div>
+    </div>
+
+    <!-- Konten utama halaman -->
+    <div class="content">
+        <h1>Welcome to the Page!</h1>
+        <p>Your content will go here once loading is done.</p>
+    </div>
+
+    <script>
+        // Simulasi proses loading
+        window.onload = () => {
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').style.display = 'none';
+                document.querySelector('.content').style.display = 'block';
+            }, 5000); // Waktu loading selama 3 detik
+        };
+    </script>
+</body>
+</html>
